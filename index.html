@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="PairUp matches coding students (K-12 and up) with mentors. Choose a mentor, chat safely and schedule sessions.">
+<title>PairUp – Code Mentors &amp; Students</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f3ee;--card:#fffaf5;--ink:#243656;--mut:#6b6a6f;--line:#e0d5c8;--acc:#cc6a33;--hi:#f3d3b0;--onacc:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#1b2740;--card:#243656;--ink:#f7f3ee;--mut:#c4bfb8;--line:#3a4c70;--acc:#e58a50;--onacc:#1b2740}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Jost",system-ui,sans-serif}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:400;color:var(--acc);line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,7vw,3.6rem)}h2{font-size:1.8rem}h3{font-size:1.2rem;margin-top:22px}
+a{color:var(--acc)}.mut,small{color:var(--mut)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);gap:10px;flex-wrap:wrap}
+nav b{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--acc)}
+.link{letter-spacing:.12em;font-size:.85rem;text-transform:uppercase;color:var(--ink);cursor:pointer;margin-left:14px;background:none;border:0;font-family:inherit;text-decoration:none;padding:4px 0}
+.link.on{color:var(--acc);border-bottom:2px solid var(--acc)}
+main{max-width:980px;margin:0 auto;padding:24px 18px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;max-width:520px;margin:0 auto}.wide{max-width:none;margin:10px 0}
+label{display:block;font-weight:500;margin:14px 0 4px}.row{display:flex;gap:8px;align-items:center;font-weight:400}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+input[type=checkbox],input[type=radio]{width:auto}textarea{min-height:90px}
+.btn{background:var(--acc);color:var(--onacc);border:0;border-radius:99px;padding:10px 22px;font:inherit;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;cursor:pointer;margin:12px 6px 0 0}
+.btn.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.big{text-align:left;padding:30px 22px;border-radius:16px;border:2px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}.big:hover{background:var(--hi);color:#14213d}.big h2{margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips label{display:inline-flex;gap:6px;align-items:center;margin:0;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-weight:400;cursor:pointer}
+.err{color:#c0392b;min-height:1.2em;margin:10px 0 0}
+.tag{display:inline-block;background:var(--hi);color:#14213d;border-radius:6px;padding:1px 8px;font-size:.85rem}
+.chat{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+#msgs{height:340px;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.bub{max-width:80%;padding:8px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);word-break:break-word}.bub.me{align-self:flex-end;background:var(--hi);color:#14213d}.bub small{display:block}
+pre{margin:4px 0 0;white-space:pre-wrap;font:13px ui-monospace,Menlo,monospace}
+.topic{display:block;width:100%;text-align:left;margin:6px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+@media(max-width:700px){.split,.chat{grid-template-columns:1fr}}
+</style></head><body>
+<nav><b>PairUp</b><span id="navr"></span></nav><main id="app"></main>
+<script>
+var CFG={url:"https://iuftqnvraictawrgvmar.supabase.co",key:"sb_publishable_B6Ulfa4LPzaoX0paP3yeLw_1zYqWLLh",pay:"",portal:""};
+var LANGS=["Python","JavaScript","Java","C++","C#","Go","Rust","SQL"],LEVELS=["Beginner","Intermediate","Advanced"],EXP=["Under 1","1–3","3–5","5–10","10+"],
+STAGES=["Learning basics","Building projects","Interview prep","Career change"],SPEC=["Beginners","Data science","Game dev","Mobile","Interview prep","Career guidance"],
+VENUES=["Public library","Coffee shop","Community center","School (with staff approval)","Other public place"],
+TOPICS={Beginner:["Variables & types","Loops & conditions","Functions","Debugging with print"],Intermediate:["Data structures","APIs & JSON","Testing","Git basics"],Advanced:["Design patterns","Performance","System design","Code review"]},
+YRS={"Under 1":.5,"1–3":2,"3–5":4,"5–10":7.5,"10+":12},NEED={Beginner:1,Intermediate:3,Advanced:5};
+var S=ld("pu_s",null),P=null,pairs=[],mt=[],cur=null,tab="mentors",draft={},app=document.getElementById("app");
+function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var $=id=>document.getElementById(id),v=id=>$(id).value.trim();
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function err(m){var e=$("err");if(e)e.textContent=m;return false}
+function msg(e){return e&&(e.msg||e.message||e.error_description)||"Something went wrong."}
+function vals(n){return[...document.querySelectorAll('input[name="'+n+'"]:checked')].map(e=>e.value)}
+function f(id,l,t){return`<label for="${id}">${l}</label><input id="${id}" type="${t||"text"}">`}
+function sel(id,l,a){return`<label for="${id}">${l}</label><select id="${id}">${a.map(o=>`<option>${o}</option>`).join("")}</select>`}
+function chips(n,a){return'<div class="chips">'+a.map(l=>`<label><input type="checkbox" name="${n}" value="${l}">${l}</label>`).join("")+"</div>"}
+function go(h){location.hash=h}
+
+/* ---- Supabase (Auth + REST; every request carries the user's token, so RLS applies) ---- */
+function raw(path,o){return fetch(CFG.url+path,o).then(r=>r.text().then(t=>{var j=null;try{j=t?JSON.parse(t):null}catch(e){}if(!r.ok)throw j||{message:"Request failed"};return j}))}
+function api(path,o,retry){o=o||{};var h={apikey:CFG.key,"Content-Type":"application/json"};if(S)h.Authorization="Bearer "+S.access_token;
+return raw("/rest/v1"+path,{method:o.method||"GET",headers:h,body:o.body?JSON.stringify(o.body):undefined}).catch(e=>{
+if(S&&!retry&&(e.code=="PGRST303"||/JWT/i.test(msg(e))))return refresh().then(()=>api(path,o,1));throw e})}
+function refresh(){return raw("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:S&&S.refresh_token})}).then(j=>{S=j;sv("pu_s",j)},()=>{S=null;sv("pu_s",null);throw{message:"Session expired. Please log in again."}})}
+function auth(p,b){return raw("/auth/v1/"+p,{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify(b)})}
+
+/* ---- Safe chat: mask profanity (incl. leetspeak), emails, phone numbers and links ---- */
+var BAD="fuck shit bitch asshole bastard dick crap porn nude sex".split(" "),LT={a:"[a@4]",e:"[e3]",i:"[i1!]",o:"[o0]",s:"[s$5]",t:"[t7]"},
+RX=BAD.map(w=>new RegExp("(?<![a-z])"+w.split("").map(c=>(LT[c]||c)+"+").join("[\\W_]*")+"s?(?![a-z])","gi"));
+function clean(t){RX.forEach(r=>t=t.replace(r,m=>"*".repeat(m.length)));return t.replace(/https?:\/\/\S+/gi,"[link hidden]").replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,"[hidden]").replace(/\+?\d[\d\s().-]{7,}\d/g,"[hidden]")}
+
+/* ---- Matching ---- */
+function score(m,s){if((m.langs||[]).indexOf(s.lang)<0)return 0;var y=YRS[m.exp]||0,n=NEED[s.level]||1,c=50+(y>=n?40:40*y/n);
+var X={"Learning basics":"Beginners","Interview prep":"Interview prep","Career change":"Career guidance"};if((m.spec||[]).indexOf(X[s.stage])>-1)c+=10;return Math.round(c)}
+var act=()=>pairs.filter(p=>p.status=="active"),oth=p=>P.role=="mentor"?p.s:p.m;
+function nudge(p){if(p.status!="active")return"";var l=mt.filter(m=>m.pair==p.id&&m.status!="cancelled"),d=mt.filter(m=>m.pair==p.id&&m.status=="done").length;
+if(l.length)return` · ${d} session${d==1?"":"s"} done`;var dl=new Date(+new Date(p.created_at)+7*864e5);
+return Date.now()>dl?` <span class="err">First session overdue. Book one now, or the student can choose another mentor.</span>`:` · <b>Book your first session by ${dl.toLocaleDateString()}</b>`}
+
+/* ---- Pages ---- */
+function nav(){var t=[["mentors",P&&P.role=="mentor"?"My students":"Mentors"],["chat","Chat"],["meet","Schedule"],["plans","Plans"]];
+$("navr").innerHTML=S&&P?t.map(x=>`<button class="link${tab==x[0]?" on":""}" onclick="setTab('${x[0]}')">${x[1]}</button>`).join("")+'<button class="link" onclick="out()">Log out</button>':'<a class="link" href="#login">Log in</a>'}
+function home(){app.innerHTML=`<h1>Guided Software Development Training</h1><p class="mut" style="max-width:56ch">PairUp connects programming students (K–12 and up) with mentors. Choose from several mentors, chat in a moderated workspace and commit to real sessions, online or in person.</p>
+<div class="split"><button class="big" onclick="start('mentor')"><h2>Sign up as mentor</h2>Share your experience and guide students. Mentors must be 18+.</button><button class="big" onclick="start('student')"><h2>Sign up as student</h2>Pick your mentor in the language you want to learn.</button></div><p>Already a member? <a href="#login">Log in</a></p>`}
+function start(r){draft={role:r};go("signup")}
+function signup(){var m=draft.role=="mentor";app.innerHTML=`<div class="card"><h2>Create your ${draft.role} account</h2>${f("n","Name")}${f("e","Email","email")}${f("p","Password (8+ characters)","password")}${f("a","Age","number")}`+
+(m?f("pr","Profession")+sel("ex","Years of experience",EXP)+'<label for="bio">About you</label><textarea id="bio" placeholder="Your teaching style and why you want to mentor"></textarea><label>Languages you teach</label>'+chips("lg",LANGS)+"<label>Specialties</label>"+chips("sp",SPEC):sel("l","Language to learn",LANGS)+sel("lv","Your level",LEVELS)+sel("st","Learning stage",STAGES))+
+`<label class="row"><input type="checkbox" id="ok">${m?"I am 18 or older":"If I am under 13, my parent/guardian agrees to me joining"}</label><p class="err" id="err"></p><button class="btn" onclick="doSignup()">Create account</button></div>`}
+function doSignup(){var m=draft.role=="mentor",a=+v("a");
+if(!v("n")||!/^\S+@\S+\.\S+$/.test(v("e"))||$("p").value.length<8||!(a>=(m?18:5)&&a<=99))return err(m?"Enter your name, a valid email, an 8+ character password and your age (mentors must be 18+).":"Enter your name, a valid email, an 8+ character password and your age (5 or older).");
+if(!$("ok").checked)return err("Please tick the confirmation box.");
+var d={role:draft.role,name:v("n"),age:a};
+if(m){if(!v("pr")||v("bio").length<20||!vals("lg").length)return err("Add your profession, a short bio (20+ characters) and at least one language.");Object.assign(d,{profession:v("pr"),exp:v("ex"),bio:v("bio"),langs:vals("lg"),spec:vals("sp"),lang:vals("lg")[0]})}
+else Object.assign(d,{lang:v("l"),level:v("lv"),stage:v("st")});
+auth("signup",{email:v("e").toLowerCase(),password:$("p").value,data:d}).then(j=>{if(j.access_token){S=j;sv("pu_s",j);return boot().then(()=>{go("app");route()})}
+app.innerHTML='<div class="card"><h2>Check your email</h2><p>We sent a confirmation link. Confirm your address, then <a href="#login">log in</a>.</p></div>'},e=>err(msg(e)))}
+function login(){app.innerHTML=`<div class="card"><h2>Log in</h2>${f("e","Email","email")}${f("p","Password","password")}<p class="err" id="err"></p><button class="btn" onclick="doLogin()">Log in</button></div>`}
+function doLogin(){auth("token?grant_type=password",{email:v("e").toLowerCase(),password:$("p").value}).then(j=>{S=j;sv("pu_s",j);return boot()}).then(()=>{go("app");route()},e=>err(msg(e)))}
+function out(){S=null;P=null;pairs=[];sv("pu_s",null);location.hash="home";route()}
+function boot(){return api("/profiles?id=eq."+S.user.id).then(r=>{P=r[0];if(!P)throw{message:"Profile not found."};return reload()})}
+function reload(){return Promise.all([api("/pairs?select=*,s:profiles!student(*),m:profiles!mentor(*)&order=created_at"),api("/meetings?order=starts_at")]).then(r=>{pairs=r[0];mt=r[1]})}
+function setTab(t){tab=t;render()}
+function render(){nav();if(tab=="chat")chatTab();else if(tab=="meet")meetTab();else if(tab=="plans")plansTab();else P.role=="mentor"?reqTab():mentorsTab()}
+var fail=e=>{app.innerHTML=`<p class="err">${esc(msg(e))}</p>`};
+
+/* Student: browse and choose mentors */
+function mentorsTab(){var fl=window.fl||P.lang;app.innerHTML="<p>Loading…</p>";
+api("/profiles?role=eq.mentor").then(M=>{var mine=pairs.filter(p=>p.status=="pending"||p.status=="active");
+var h=`<h2>Welcome, ${esc(P.name)}</h2><p class="mut">Learning <b>${esc(P.lang)}</b> · ${esc(P.level)}. Your plan lets you choose ${P.plan=="premium"?3:1} mentor(s) at a time; each must accept. Choosing a mentor is a commitment: book your first session within 7 days and show up to your sessions.</p><h3>Your mentors</h3>`+
+(mine.length?mine.map(p=>`<div class="card wide"><b>${esc(p.m.name)}</b> <span class="tag">${p.status}</span>${nudge(p)}</div>`).join(""):'<p class="mut">None yet. Choose below.</p>');
+var L=M.filter(m=>fl=="All"||(m.langs||[]).includes(fl)).map(m=>({m,s:score(m,P)})).sort((a,b)=>(b.m.plan=="premium")-(a.m.plan=="premium")||b.s-a.s);
+h+=`<h3>Choose a mentor</h3><label for="fl">Language</label><select id="fl" style="max-width:220px" onchange="window.fl=this.value;mentorsTab()">${["All"].concat(LANGS).map(l=>`<option${l==fl?" selected":""}>${l}</option>`).join("")}</select>`;
+h+=L.length?L.map(x=>{var m=x.m,ex=mine.find(p=>p.mentor==m.id);return`<div class="card wide"><b>${esc(m.name)}</b> · ${esc(m.profession)} · ${esc(m.exp)} yrs ${x.s?`<span class="tag">${x.s}% match</span>`:""}${m.plan=="premium"?' <span class="tag">Featured</span>':""}<p>${esc(m.bio)}</p><small>Teaches ${esc((m.langs||[]).join(", "))}${m.spec&&m.spec.length?" · "+esc(m.spec.join(", ")):""}</small><br>${ex?`<span class="tag">${ex.status}</span>`:`<button class="btn" onclick="choose('${m.id}')">Choose ${esc(m.name.split(" ")[0])}</button>`}</div>`}).join(""):"<p>No mentors for that language yet.</p>";
+app.innerHTML=h},fail)}
+function choose(id){if(pairs.filter(p=>p.status=="pending"||p.status=="active").length>=(P.plan=="premium"?3:1))return alert("Your plan allows "+(P.plan=="premium"?3:1)+" mentor(s) at a time. Upgrade on the Plans tab for more.");
+if(!confirm("Commit to meeting with this mentor? You'll book a first session within 7 days and show up to your sessions."))return;
+api("/pairs",{method:"POST",body:{student:P.id,mentor:id}}).then(reload).then(render,e=>alert(msg(e)))}
+
+/* Mentor: requests and students */
+function reqTab(){var pe=pairs.filter(p=>p.status=="pending"),ac=act();
+app.innerHTML=`<h2>Welcome, ${esc(P.name)}</h2><p class="mut">${esc(P.profession)} · ${esc(P.exp)} yrs · ${P.plan=="premium"?"unlimited":"up to 3"} active students</p><h3>Requests</h3>`+
+(pe.length?pe.map(p=>`<div class="card wide"><b>${esc(p.s.name)}</b> (age ${p.s.age}) · ${esc(p.s.lang)} · ${esc(p.s.level)} · ${esc(p.s.stage)} <span class="tag">${score(P,p.s)}% match</span><br><button class="btn" onclick="resp('${p.id}','active')">Accept</button><button class="btn alt" onclick="resp('${p.id}','declined')">Decline</button></div>`).join(""):'<p class="mut">No pending requests.</p>')+
+"<h3>Active students</h3>"+(ac.length?ac.map(p=>`<div class="card wide"><b>${esc(p.s.name)}</b> · ${esc(p.s.lang)} · ${esc(p.s.level)}${nudge(p)}</div>`).join(""):'<p class="mut">None yet.</p>')}
+function resp(id,st){if(st=="active"&&P.plan!="premium"&&act().length>=3)return alert("Basic mentors can have 3 active students. Upgrade on the Plans tab for unlimited.");api("/pairs?id=eq."+id,{method:"PATCH",body:{status:st}}).then(reload).then(render,e=>alert(msg(e)))}
+
+/* Chat workspace */
+function psel(a,fn){if(!a.find(p=>p.id==cur))cur=a[0].id;return`<label for="ps">Session with</label><select id="ps" style="max-width:320px" onchange="cur=this.value;${fn}()">${a.map(p=>`<option value="${p.id}"${p.id==cur?" selected":""}>${esc(oth(p).name)} · ${esc(p.s.lang)}</option>`).join("")}</select>`}
+function chatTab(){var a=act();if(!a.length){app.innerHTML='<div class="card"><p>Chat opens as soon as a mentor accepts a match.</p></div>';return}
+var p=a.find(x=>x.id==cur)||a[0],tp=TOPICS[p.s.level]||TOPICS.Beginner;
+app.innerHTML=psel(a,"chatTab")+`<div class="chat" style="margin-top:12px"><div><div id="msgs" aria-live="polite"></div><textarea id="mb" style="min-height:60px;margin-top:8px" maxlength="1000" placeholder="Write a message…"></textarea><label class="row"><input type="checkbox" id="cd">Send as code</label><button class="btn" onclick="send()">Send</button><p class="mut"><small>Messages are filtered: inappropriate words, links, emails and phone numbers are hidden. Keep it on PairUp.</small></p></div>
+<div class="card wide"><h3 style="margin-top:0">Learn together</h3><p class="mut">Suggested ${esc(p.s.level)} topics for ${esc(p.s.lang)}. Tap to start a discussion.</p>${tp.map(t=>`<button class="topic" onclick="$('mb').value='Let\\'s cover: ${t}';$('mb').focus()">${t}</button>`).join("")}</div></div>`;loadMsgs()}
+function loadMsgs(){var id=cur;api("/messages?pair=eq."+id+"&order=created_at.desc&limit=100").then(r=>{var b=$("msgs");if(!b||id!=cur)return;var n=b.scrollHeight-b.scrollTop-b.clientHeight<60||!b.children.length;
+b.innerHTML=r.reverse().map(m=>{var mine=m.sender==P.id,t=esc(clean(m.body));return`<div class="bub${mine?" me":""}"><small>${mine?"You":esc(oth(pairs.find(p=>p.id==id)).name)}</small>${m.code?`<pre>${t}</pre>`:t}</div>`}).join("")||'<p class="mut">Say hi!</p>';if(n)b.scrollTop=b.scrollHeight},()=>{})}
+function send(){var t=clean($("mb").value.trim());if(!t)return;api("/messages",{method:"POST",body:{pair:cur,sender:P.id,body:t,code:$("cd").checked}}).then(()=>{$("mb").value="";loadMsgs()},e=>alert(msg(e)))}
+setInterval(()=>{if(S&&P&&tab=="chat"&&$("msgs"))loadMsgs()},4000);
+
+/* Scheduling */
+function meetTab(){var a=act();if(!a.length){app.innerHTML='<div class="card"><p>You can schedule sessions once a mentor accepts a match.</p></div>';return}
+var d=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
+app.innerHTML=psel(a,"meetTab")+`<div class="card wide"><h3 style="margin-top:0">Propose a session</h3><label for="dt">Date and time</label><input id="dt" type="datetime-local" min="${d}">
+<label>Format</label><label class="row"><input type="radio" name="md" value="online" checked onchange="mode()">Online</label><label class="row"><input type="radio" name="md" value="in-person" onchange="mode()">In person</label>
+<div id="on"><label for="lk">Meeting link</label><input id="lk" value="https://meet.jit.si/PairUp-${cur.slice(0,12)}"></div>
+<div id="ip" hidden>${sel("vn","Where to meet",VENUES)}${f("ad","Venue name and address")}<p class="mut"><small>Meet only in a public place. Students under 18 should tell a parent or guardian where and when.</small></p></div>
+<p class="err" id="err"></p><button class="btn" onclick="propose()">Propose</button></div><h3>Sessions</h3><div id="ml"></div>`;list()}
+function mode(){var ip=document.querySelector('input[name="md"]:checked').value=="in-person";$("ip").hidden=!ip;$("on").hidden=ip}
+function propose(){var t=new Date($("dt").value),ip=document.querySelector('input[name="md"]:checked').value=="in-person";
+if(isNaN(t)||t<Date.now())return err("Pick a date and time in the future.");if(ip&&!v("ad"))return err("Enter the venue name and address.");if(!ip&&!/^https:\/\//.test(v("lk")))return err("Enter an https:// meeting link.");
+api("/meetings",{method:"POST",body:{pair:cur,starts_at:t.toISOString(),mode:ip?"in-person":"online",place:ip?v("vn")+": "+v("ad"):null,link:ip?null:v("lk"),created_by:P.id}}).then(reload).then(()=>{$("dt").value="";err("");list()},e=>err(msg(e)))}
+function list(){var l=mt.filter(m=>m.pair==cur);$("ml").innerHTML=l.length?l.map(m=>{var past=new Date(m.starts_at)<Date.now(),b="";
+if(m.status=="proposed"&&m.created_by!=P.id)b+=`<button class="btn" onclick="mset('${m.id}','confirmed')">Confirm</button>`;
+if(m.status=="confirmed"&&past)b+=`<button class="btn" onclick="mset('${m.id}','done')">Mark done</button>`;
+if(m.status=="proposed"||m.status=="confirmed")b+=`<button class="btn alt" onclick="mset('${m.id}','cancelled')">Cancel</button>`;
+return`<div class="card wide"><b>${new Date(m.starts_at).toLocaleString([], {dateStyle:"medium",timeStyle:"short"})}</b> <span class="tag">${m.mode}</span> <span class="tag">${m.status}</span><br>${m.mode=="online"?(/^https:\/\//.test(m.link||"")?`<a href="${esc(m.link)}" target="_blank" rel="noopener noreferrer">Join online</a>`:"Online"):esc(m.place)}<br>${b}</div>`}).join(""):'<p class="mut">No sessions yet. Propose one above.</p>'}
+function mset(id,st){api("/meetings?id=eq."+id,{method:"PATCH",body:{status:st}}).then(reload).then(list,e=>alert(msg(e)))}
+
+/* Plans + payment: checkout happens on Stripe; only the server-side webhook can set plan=premium */
+function plansTab(){var m=P.role=="mentor",pr=P.plan=="premium",rows=m?[["Active students","Up to 3","Unlimited"],["Profile listing","Standard","Featured at top"]]:[["Mentors at once","1","Up to 3"],["Sessions per month","1","Unlimited"]],
+url=CFG.pay?CFG.pay+(CFG.pay.includes("?")?"&":"?")+"client_reference_id="+P.id:"";
+app.innerHTML=`<h2>Your plan: <span class="tag">${P.plan}</span></h2><div class="card wide"><table style="width:100%;border-collapse:collapse"><tr><th align="left">Feature</th><th align="left">Basic · Free</th><th align="left">Premium · $12/mo</th></tr>${rows.map(r=>`<tr><td>${r.join("</td><td>")}</td></tr>`).join("")}</table>`+
+(pr?`<p>You're on Premium. Thank you!</p>${CFG.portal?`<a href="${esc(CFG.portal)}">Manage or cancel subscription</a>`:""}`:url?`<a class="btn" style="display:inline-block;text-decoration:none" href="${esc(url)}">Upgrade to Premium</a><p class="mut"><small>Secure checkout by Stripe. PairUp never sees your card. Your plan updates automatically after payment; <a href="#" onclick="refreshMe();return false">refresh</a> if it hasn't yet.</small></p>`:'<p class="mut">Payments are not switched on yet.</p>')+"</div>"}
+function refreshMe(){boot().then(render,fail)}
+function route(){var h=location.hash.slice(1)||"home";nav();if(S&&P)return render();
+if(h=="login")login();else if(h=="signup"&&draft.role)signup();else home()}
+window.addEventListener("hashchange",route);
+if(S)boot().then(route,()=>{S=null;sv("pu_s",null);route()});else route();
+</script></body></html>
