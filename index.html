@@ -1,166 +1,223 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="PairUp matches coding students (K-12 and up) with mentors. Choose a mentor, chat safely and schedule sessions.">
+<meta name="description" content="PairUp connects programming mentors with students. Sign up as a mentor or student, pick a plan, and start learning to code.">
+<meta property="og:title" content="PairUp – Code Mentors &amp; Students">
+<meta property="og:description" content="Find a programming mentor or share your experience as one.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index,follow">
 <title>PairUp – Code Mentors &amp; Students</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f7f3ee;--card:#fffaf5;--ink:#243656;--mut:#6b6a6f;--line:#e0d5c8;--acc:#cc6a33;--hi:#f3d3b0;--onacc:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root{--bg:#1b2740;--card:#243656;--ink:#f7f3ee;--mut:#c4bfb8;--line:#3a4c70;--acc:#e58a50;--onacc:#1b2740}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b2740;--card:#243656;--ink:#f7f3ee;--mut:#c4bfb8;--line:#3a4c70;--acc:#e58a50;--onacc:#1b2740}}
+:root[data-theme="dark"]{--bg:#1b2740;--card:#243656;--ink:#f7f3ee;--mut:#c4bfb8;--line:#3a4c70;--acc:#e58a50;--onacc:#1b2740}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Jost",system-ui,sans-serif}
 h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:400;color:var(--acc);line-height:1.1;margin:0 0 .5em}
-h1{font-size:clamp(2.2rem,7vw,3.6rem)}h2{font-size:1.8rem}h3{font-size:1.2rem;margin-top:22px}
-a{color:var(--acc)}.mut,small{color:var(--mut)}
+h1{font-size:clamp(2.2rem,7vw,3.8rem)}h2{font-size:1.8rem}h3{font-size:1.2rem}
 nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);gap:10px;flex-wrap:wrap}
 nav b{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--acc)}
-.link{letter-spacing:.12em;font-size:.85rem;text-transform:uppercase;color:var(--ink);cursor:pointer;margin-left:14px;background:none;border:0;font-family:inherit;text-decoration:none;padding:4px 0}
-.link.on{color:var(--acc);border-bottom:2px solid var(--acc)}
+nav a,.link{letter-spacing:.12em;font-size:.85rem;text-transform:uppercase;text-decoration:none!important;color:var(--ink);cursor:pointer;margin-left:14px;text-decoration:underline;background:none;border:0;font:inherit}
 main{max-width:980px;margin:0 auto;padding:24px 18px 60px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;max-width:520px;margin:0 auto}.wide{max-width:none;margin:10px 0}
-label{display:block;font-weight:500;margin:14px 0 4px}.row{display:flex;gap:8px;align-items:center;font-weight:400}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;max-width:520px;margin:0 auto}
+.wide{max-width:none}
+label{display:block;font-weight:500;margin:14px 0 4px}
 input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
-input[type=checkbox],input[type=radio]{width:auto}textarea{min-height:90px}
-.btn{background:var(--acc);color:var(--onacc);border:0;border-radius:99px;padding:10px 22px;font:inherit;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;cursor:pointer;margin:12px 6px 0 0}
-.btn.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
-:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
-.big{text-align:left;padding:30px 22px;border-radius:16px;border:2px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}.big:hover{background:var(--hi);color:#14213d}.big h2{margin:0 0 6px}
+textarea{min-height:110px}
+button.btn{background:var(--acc);color:var(--onacc);border:0;border-radius:99px;padding:12px 26px;font:inherit;font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;cursor:pointer;margin-top:18px}
+button.btn.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.big{display:block;text-align:left;padding:34px 24px;border-radius:16px;border:2px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+.big:hover{background:var(--hi);color:#14213d}.big h2{margin:0 0 6px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}.chips label{display:inline-flex;gap:6px;align-items:center;margin:0;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-weight:400;cursor:pointer}
+.chips input{width:auto}
 .err{color:#c0392b;min-height:1.2em;margin:10px 0 0}
+.prog{display:flex;gap:6px;margin-bottom:14px}.prog i{flex:1;height:5px;border-radius:3px;background:var(--line)}.prog i.on{background:var(--acc)}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+.scroll{overflow-x:auto}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plan{border:2px solid var(--line);border-radius:14px;padding:20px;background:var(--card)}.plan.pro{border-color:var(--acc)}
+.price{font-family:"Playfair Display",Georgia,serif;font-size:2rem;color:var(--acc)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 18px}.stat b{font-size:1.5rem;display:block}
 .tag{display:inline-block;background:var(--hi);color:#14213d;border-radius:6px;padding:1px 8px;font-size:.85rem}
-.chat{display:grid;grid-template-columns:2fr 1fr;gap:16px}
-#msgs{height:340px;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.bub{max-width:80%;padding:8px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);word-break:break-word}.bub.me{align-self:flex-end;background:var(--hi);color:#14213d}.bub small{display:block}
-pre{margin:4px 0 0;white-space:pre-wrap;font:13px ui-monospace,Menlo,monospace}
-.topic{display:block;width:100%;text-align:left;margin:6px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
-@media(max-width:700px){.split,.chat{grid-template-columns:1fr}}
+.hub{border-top:6px solid var(--hi)}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;background:#ede4dd;border-radius:18px;padding:28px}.hero svg{width:100%;max-width:340px;justify-self:center}@media(prefers-color-scheme:dark){.hero{background:#243656}}
+@media(max-width:640px){.split,.plans,.hero{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
-<nav><b>PairUp</b><span id="navr"></span></nav><main id="app"></main>
+<nav><b id="brand">PairUp</b><span id="navr"></span></nav>
+<main id="app"></main>
 <script>
-var CFG={url:"https://iuftqnvraictawrgvmar.supabase.co",key:"sb_publishable_B6Ulfa4LPzaoX0paP3yeLw_1zYqWLLh",pay:"",portal:""};
-var LANGS=["Python","JavaScript","Java","C++","C#","Go","Rust","SQL"],LEVELS=["Beginner","Intermediate","Advanced"],EXP=["Under 1","1–3","3–5","5–10","10+"],
-STAGES=["Learning basics","Building projects","Interview prep","Career change"],SPEC=["Beginners","Data science","Game dev","Mobile","Interview prep","Career guidance"],
-VENUES=["Public library","Coffee shop","Community center","School (with staff approval)","Other public place"],
-TOPICS={Beginner:["Variables & types","Loops & conditions","Functions","Debugging with print"],Intermediate:["Data structures","APIs & JSON","Testing","Git basics"],Advanced:["Design patterns","Performance","System design","Code review"]},
-YRS={"Under 1":.5,"1–3":2,"3–5":4,"5–10":7.5,"10+":12},NEED={Beginner:1,Intermediate:3,Advanced:5};
-var S=ld("pu_s",null),P=null,pairs=[],mt=[],cur=null,tab="mentors",draft={},app=document.getElementById("app");
-function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
-function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-var $=id=>document.getElementById(id),v=id=>$(id).value.trim();
-function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function err(m){var e=$("err");if(e)e.textContent=m;return false}
-function msg(e){return e&&(e.msg||e.message||e.error_description)||"Something went wrong."}
-function vals(n){return[...document.querySelectorAll('input[name="'+n+'"]:checked')].map(e=>e.value)}
-function f(id,l,t){return`<label for="${id}">${l}</label><input id="${id}" type="${t||"text"}">`}
-function sel(id,l,a){return`<label for="${id}">${l}</label><select id="${id}">${a.map(o=>`<option>${o}</option>`).join("")}</select>`}
-function chips(n,a){return'<div class="chips">'+a.map(l=>`<label><input type="checkbox" name="${n}" value="${l}">${l}</label>`).join("")+"</div>"}
+var LANGS=["Python","JavaScript","Java","C++","C#","Go","Rust","SQL"],LEVELS=["Beginner","Intermediate","Advanced"];
+var mem={};
+function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return mem[k]!==undefined?mem[k]:d}}
+function sv(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function go(h){location.hash=h}
+function prog(n,t){var s='<div class="prog">';for(var i=1;i<=t;i++)s+='<i class="'+(i<=n?'on':'')+'"></i>';return s+'</div>'}
+function chips(name,list,sel){return '<div class="chips">'+list.map(function(l){return '<label><input type="checkbox" name="'+name+'" value="'+l+'"'+((sel||[]).indexOf(l)>-1?' checked':'')+'>'+l+'</label>'}).join("")+'</div>'}
+function vals(name){return Array.prototype.map.call(document.querySelectorAll('input[name="'+name+'"]:checked'),function(e){return e.value})}
+function v(id){return document.getElementById(id).value.trim()}
+function err(m){document.getElementById("err").textContent=m;return false}
 
-/* ---- Supabase (Auth + REST; every request carries the user's token, so RLS applies) ---- */
-function raw(path,o){return fetch(CFG.url+path,o).then(r=>r.text().then(t=>{var j=null;try{j=t?JSON.parse(t):null}catch(e){}if(!r.ok)throw j||{message:"Request failed"};return j}))}
-function api(path,o,retry){o=o||{};var h={apikey:CFG.key,"Content-Type":"application/json"};if(S)h.Authorization="Bearer "+S.access_token;
-return raw("/rest/v1"+path,{method:o.method||"GET",headers:h,body:o.body?JSON.stringify(o.body):undefined}).catch(e=>{
-if(S&&!retry&&(e.code=="PGRST303"||/JWT/i.test(msg(e))))return refresh().then(()=>api(path,o,1));throw e})}
-function refresh(){return raw("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:S&&S.refresh_token})}).then(j=>{S=j;sv("pu_s",j)},()=>{S=null;sv("pu_s",null);throw{message:"Session expired. Please log in again."}})}
-function auth(p,b){return raw("/auth/v1/"+p,{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify(b)})}
+function home(){app.innerHTML='<div class="hero"><div><h1>Guided Software Development Training</h1><p style="max-width:52ch;color:var(--mut)">Open to everyone from kindergarten up. Meet mentors who share your ideas, learn AI, practice public speaking and plan your career path. Every mentor is reviewed before they can be matched.</p></div><svg viewBox="0 0 300 260" role="img" aria-label="A mentor seen from behind coding while a student watches over the laptop"><path d="M20 258V125a130 130 0 0 1 260 0v133z" fill="#f6e3cf" stroke="#e8a070"/><circle cx="200" cy="90" r="38" fill="#fbefe0"/><text x="46" y="92" font-family="ui-monospace,Menlo,monospace" font-size="20" font-weight="700" fill="#cc6a33">&lt;/&gt;</text><path d="M138 156q2-26 42-26t42 26z" fill="#4a6490"/><rect x="172" y="118" width="16" height="16" fill="#e9b88f"/><circle cx="180" cy="100" r="22" fill="#e9b88f"/><path d="M158 98a22 22 0 0 1 44 0q-12-12-22-10t-22 10z" fill="#3b2a20"/><circle cx="205" cy="106" r="6" fill="#3b2a20"/><circle cx="173" cy="103" r="2" fill="#243656"/><circle cx="187" cy="103" r="2" fill="#243656"/><path d="M174 111q6 5 12 0" stroke="#243656" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="120" y="152" width="120" height="70" rx="7" fill="#243656"/><circle cx="180" cy="187" r="8" fill="#cc6a33"/><path d="M106 224h148l8 9H98z" fill="#1b2740"/><rect x="10" y="233" width="280" height="10" fill="#cc6a33"/><rect x="10" y="243" width="280" height="15" fill="#d9773a"/><path d="M26 262q0-48 64-48t64 48z" fill="#cc6a33"/><path d="M62 220q28 14 56 0" stroke="#b5561f" stroke-width="3" fill="none"/><rect x="82" y="196" width="16" height="22" fill="#e0a77c"/><circle cx="90" cy="178" r="27" fill="#2b1d16"/><path d="M128 232q22-8 46-4" stroke="#cc6a33" stroke-width="15" stroke-linecap="round" fill="none"/><circle cx="178" cy="228" r="6" fill="#e0a77c"/></svg></div>'+
+'<div class="split"><button class="big" onclick="start(\'mentor\')"><h2>Sign up as mentor</h2>Share your experience and guide students.</button><button class="big" onclick="start(\'student\')"><h2>Sign up as student</h2>Find a mentor in the language you want to learn.</button></div>'+
+'<p>Already a member? <a class="link" href="#login" style="margin:0">Log in</a></p>'}
+function start(r){draft={role:r};go("signup/1")}
 
-/* ---- Safe chat: mask profanity (incl. leetspeak), emails, phone numbers and links ---- */
-var BAD="fuck shit bitch asshole bastard dick crap porn nude sex".split(" "),LT={a:"[a@4]",e:"[e3]",i:"[i1!]",o:"[o0]",s:"[s$5]",t:"[t7]"},
-RX=BAD.map(w=>new RegExp("(?<![a-z])"+w.split("").map(c=>(LT[c]||c)+"+").join("[\\W_]*")+"s?(?![a-z])","gi"));
-function clean(t){RX.forEach(r=>t=t.replace(r,m=>"*".repeat(m.length)));return t.replace(/https?:\/\/\S+/gi,"[link hidden]").replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,"[hidden]").replace(/\+?\d[\d\s().-]{7,}\d/g,"[hidden]")}
+function s1(){app.innerHTML='<div class="card">'+prog(1,draft.role=="mentor"?6:3)+'<h2>Create your '+draft.role+' account</h2>'+
+'<label for="n">Name</label><input id="n" autocomplete="name" value="'+esc(draft.name)+'">'+
+'<label for="e">Email</label><input id="e" type="email" autocomplete="email" value="'+esc(draft.email)+'">'+
+'<label for="p">Password</label><input id="p" type="password" autocomplete="new-password" value="'+esc(draft.pw)+'">'+
+'<label for="a">Age</label><input id="a" type="number" min="5" max="99" value="'+esc(draft.age)+'">'+
+'<label style="display:flex;gap:8px;align-items:flex-start;font-weight:400"><input id="g1" type="checkbox" style="width:auto;margin-top:5px">I am 18 or older, or a parent/guardian has approved my use of PairUp.</label><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400"><input id="g2" type="checkbox" style="width:auto;margin-top:5px">I commit to meeting my match at least twice a month.</label><p class="err" id="err"></p><button class="btn" onclick="n1()">Next</button></div>'}
+function n1(){var a=+v("a");if(!document.getElementById("g1").checked||!document.getElementById("g2").checked)return err("Please tick both boxes to continue.");if(!v("n")||!/^\S+@\S+\.\S+$/.test(v("e"))||v("p").length<8||!(a>=5))return err("Enter your name, a valid email, a password of 8+ characters and your age.");
+draft.name=v("n");draft.email=v("e").toLowerCase();draft.pw=document.getElementById("p").value;draft.age=a;go("signup/2")}
 
-/* ---- Matching ---- */
-function score(m,s){if((m.langs||[]).indexOf(s.lang)<0)return 0;var y=YRS[m.exp]||0,n=NEED[s.level]||1,c=50+(y>=n?40:40*y/n);
-var X={"Learning basics":"Beginners","Interview prep":"Interview prep","Career change":"Career guidance"};if((m.spec||[]).indexOf(X[s.stage])>-1)c+=10;return Math.round(c)}
-var act=()=>pairs.filter(p=>p.status=="active"),oth=p=>P.role=="mentor"?p.s:p.m;
-function nudge(p){if(p.status!="active")return"";var l=mt.filter(m=>m.pair==p.id&&m.status!="cancelled"),d=mt.filter(m=>m.pair==p.id&&m.status=="done").length;
-if(l.length)return` · ${d} session${d==1?"":"s"} done`;var dl=new Date(+new Date(p.created_at)+7*864e5);
-return Date.now()>dl?` <span class="err">First session overdue. Book one now, or the student can choose another mentor.</span>`:` · <b>Book your first session by ${dl.toLocaleDateString()}</b>`}
+function s2(){if(draft.role=="mentor"){app.innerHTML='<div class="card">'+prog(2,6)+'<h2>Your background</h2>'+
+'<label for="pr">Profession</label><input id="pr" placeholder="e.g. Backend engineer" value="'+esc(draft.profession)+'">'+
+'<label for="ex">Years of experience</label><select id="ex">'+["Under 1","1–3","3–5","5–10","10+"].map(function(o){return '<option'+(draft.exp==o?' selected':'')+'>'+o+'</option>'}).join("")+'</select>'+
+'<p class="err" id="err"></p><button class="btn alt" onclick="go(\'signup/1\')">Back</button> <button class="btn" onclick="n2()">Next</button></div>'}
+else{app.innerHTML='<div class="card">'+prog(2,3)+'<h2>What do you want to learn?</h2>'+
+'<label for="l">Language</label><select id="l">'+LANGS.map(function(o){return '<option'+(draft.lang==o?' selected':'')+'>'+o+'</option>'}).join("")+'</select>'+
+'<label for="lv">Your level in it</label><select id="lv">'+LEVELS.map(function(o){return '<option'+(draft.level==o?' selected':'')+'>'+o+'</option>'}).join("")+'</select>'+
+'<label for="st">Learning stage</label><select id="st">'+["Learning basics","Building projects","Interview prep","Career change"].map(function(o){return '<option'+(draft.stage==o?' selected':'')+'>'+o+'</option>'}).join("")+'</select>'+
+(draft.age<18?'<label for="ge">Parent or guardian email</label><input id="ge" type="email" value="'+esc(draft.ge)+'">':'')+'<label>Interests (pick any)</label>'+chips("in",INTS,draft.interests)+'<p class="err" id="err"></p><button class="btn alt" onclick="go(\'signup/1\')">Back</button> <button class="btn" onclick="n2s()">Next</button></div>'}}
+function n2(){if(!v("pr"))return err("Enter your profession.");draft.profession=v("pr");draft.exp=v("ex");go("signup/3")}
 
-/* ---- Pages ---- */
-function nav(){var t=[["mentors",P&&P.role=="mentor"?"My students":"Mentors"],["chat","Chat"],["meet","Schedule"],["plans","Plans"]];
-$("navr").innerHTML=S&&P?t.map(x=>`<button class="link${tab==x[0]?" on":""}" onclick="setTab('${x[0]}')">${x[1]}</button>`).join("")+'<button class="link" onclick="out()">Log out</button>':'<a class="link" href="#login">Log in</a>'}
-function home(){app.innerHTML=`<h1>Guided Software Development Training</h1><p class="mut" style="max-width:56ch">PairUp connects programming students (K–12 and up) with mentors. Choose from several mentors, chat in a moderated workspace and commit to real sessions, online or in person.</p>
-<div class="split"><button class="big" onclick="start('mentor')"><h2>Sign up as mentor</h2>Share your experience and guide students. Mentors must be 18+.</button><button class="big" onclick="start('student')"><h2>Sign up as student</h2>Pick your mentor in the language you want to learn.</button></div><p>Already a member? <a href="#login">Log in</a></p>`}
-function start(r){draft={role:r};go("signup")}
-function signup(){var m=draft.role=="mentor";app.innerHTML=`<div class="card"><h2>Create your ${draft.role} account</h2>${f("n","Name")}${f("e","Email","email")}${f("p","Password (8+ characters)","password")}${f("a","Age","number")}`+
-(m?f("pr","Profession")+sel("ex","Years of experience",EXP)+'<label for="bio">About you</label><textarea id="bio" placeholder="Your teaching style and why you want to mentor"></textarea><label>Languages you teach</label>'+chips("lg",LANGS)+"<label>Specialties</label>"+chips("sp",SPEC):sel("l","Language to learn",LANGS)+sel("lv","Your level",LEVELS)+sel("st","Learning stage",STAGES))+
-`<label class="row"><input type="checkbox" id="ok">${m?"I am 18 or older":"If I am under 13, my parent/guardian agrees to me joining"}</label><p class="err" id="err"></p><button class="btn" onclick="doSignup()">Create account</button></div>`}
-function doSignup(){var m=draft.role=="mentor",a=+v("a");
-if(!v("n")||!/^\S+@\S+\.\S+$/.test(v("e"))||$("p").value.length<8||!(a>=(m?18:5)&&a<=99))return err(m?"Enter your name, a valid email, an 8+ character password and your age (mentors must be 18+).":"Enter your name, a valid email, an 8+ character password and your age (5 or older).");
-if(!$("ok").checked)return err("Please tick the confirmation box.");
-var d={role:draft.role,name:v("n"),age:a};
-if(m){if(!v("pr")||v("bio").length<20||!vals("lg").length)return err("Add your profession, a short bio (20+ characters) and at least one language.");Object.assign(d,{profession:v("pr"),exp:v("ex"),bio:v("bio"),langs:vals("lg"),spec:vals("sp"),lang:vals("lg")[0]})}
-else Object.assign(d,{lang:v("l"),level:v("lv"),stage:v("st")});
-auth("signup",{email:v("e").toLowerCase(),password:$("p").value,data:d}).then(j=>{if(j.access_token){S=j;sv("pu_s",j);return boot().then(()=>{go("app");route()})}
-app.innerHTML='<div class="card"><h2>Check your email</h2><p>We sent a confirmation link. Confirm your address, then <a href="#login">log in</a>.</p></div>'},e=>err(msg(e)))}
-function login(){app.innerHTML=`<div class="card"><h2>Log in</h2>${f("e","Email","email")}${f("p","Password","password")}<p class="err" id="err"></p><button class="btn" onclick="doLogin()">Log in</button></div>`}
-function doLogin(){auth("token?grant_type=password",{email:v("e").toLowerCase(),password:$("p").value}).then(j=>{S=j;sv("pu_s",j);return boot()}).then(()=>{go("app");route()},e=>err(msg(e)))}
-function out(){S=null;P=null;pairs=[];sv("pu_s",null);location.hash="home";route()}
-function boot(){return api("/profiles?id=eq."+S.user.id).then(r=>{P=r[0];if(!P)throw{message:"Profile not found."};return reload()})}
-function reload(){return Promise.all([api("/pairs?select=*,s:profiles!student(*),m:profiles!mentor(*)&order=created_at"),api("/meetings?order=starts_at")]).then(r=>{pairs=r[0];mt=r[1]})}
-function setTab(t){tab=t;render()}
-function render(){nav();if(tab=="chat")chatTab();else if(tab=="meet")meetTab();else if(tab=="plans")plansTab();else P.role=="mentor"?reqTab():mentorsTab()}
-var fail=e=>{app.innerHTML=`<p class="err">${esc(msg(e))}</p>`};
+function s3(){app.innerHTML='<div class="card">'+prog(3,6)+'<h2>Tell students about you</h2><p style="color:var(--mut)">Write 3 sentences about your teaching style and why you want to mentor.</p>'+
+'<textarea id="bio" aria-label="About you">'+esc(draft.bio)+'</textarea><p class="err" id="err"></p><button class="btn alt" onclick="go(\'signup/2\')">Back</button> <button class="btn" onclick="n3()">Next</button></div>'}
+function n3(){var s=v("bio").split(/[.!?]+/).filter(function(x){return x.trim()});if(s.length!=3)return err("Please write exactly 3 sentences (you wrote "+s.length+").");draft.bio=v("bio");go("signup/4")}
 
-/* Student: browse and choose mentors */
-function mentorsTab(){var fl=window.fl||P.lang;app.innerHTML="<p>Loading…</p>";
-api("/profiles?role=eq.mentor").then(M=>{var mine=pairs.filter(p=>p.status=="pending"||p.status=="active");
-var h=`<h2>Welcome, ${esc(P.name)}</h2><p class="mut">Learning <b>${esc(P.lang)}</b> · ${esc(P.level)}. Your plan lets you choose ${P.plan=="premium"?3:1} mentor(s) at a time; each must accept. Choosing a mentor is a commitment: book your first session within 7 days and show up to your sessions.</p><h3>Your mentors</h3>`+
-(mine.length?mine.map(p=>`<div class="card wide"><b>${esc(p.m.name)}</b> <span class="tag">${p.status}</span>${nudge(p)}</div>`).join(""):'<p class="mut">None yet. Choose below.</p>');
-var L=M.filter(m=>fl=="All"||(m.langs||[]).includes(fl)).map(m=>({m,s:score(m,P)})).sort((a,b)=>(b.m.plan=="premium")-(a.m.plan=="premium")||b.s-a.s);
-h+=`<h3>Choose a mentor</h3><label for="fl">Language</label><select id="fl" style="max-width:220px" onchange="window.fl=this.value;mentorsTab()">${["All"].concat(LANGS).map(l=>`<option${l==fl?" selected":""}>${l}</option>`).join("")}</select>`;
-h+=L.length?L.map(x=>{var m=x.m,ex=mine.find(p=>p.mentor==m.id);return`<div class="card wide"><b>${esc(m.name)}</b> · ${esc(m.profession)} · ${esc(m.exp)} yrs ${x.s?`<span class="tag">${x.s}% match</span>`:""}${m.plan=="premium"?' <span class="tag">Featured</span>':""}<p>${esc(m.bio)}</p><small>Teaches ${esc((m.langs||[]).join(", "))}${m.spec&&m.spec.length?" · "+esc(m.spec.join(", ")):""}</small><br>${ex?`<span class="tag">${ex.status}</span>`:`<button class="btn" onclick="choose('${m.id}')">Choose ${esc(m.name.split(" ")[0])}</button>`}</div>`}).join(""):"<p>No mentors for that language yet.</p>";
-app.innerHTML=h},fail)}
-function choose(id){if(pairs.filter(p=>p.status=="pending"||p.status=="active").length>=(P.plan=="premium"?3:1))return alert("Your plan allows "+(P.plan=="premium"?3:1)+" mentor(s) at a time. Upgrade on the Plans tab for more.");
-if(!confirm("Commit to meeting with this mentor? You'll book a first session within 7 days and show up to your sessions."))return;
-api("/pairs",{method:"POST",body:{student:P.id,mentor:id}}).then(reload).then(render,e=>alert(msg(e)))}
+function s4(){app.innerHTML='<div class="card">'+prog(4,6)+'<h2>Languages, skills and specialties</h2>'+
+'<label>Programming languages you teach</label>'+chips("lg",LANGS,draft.langs)+
+'<label>Skills</label>'+chips("sk",["Debugging","Algorithms","Web apps","APIs","Testing","Code review"],draft.skills)+
+'<label>Specialties</label>'+chips("sp",["Beginners","AI","Public speaking","Networking","Data science","Game dev","Mobile","Interview prep","Career guidance"],draft.spec)+
+'<p class="err" id="err"></p><button class="btn alt" onclick="go(\'signup/3\')">Back</button> <button class="btn" onclick="n4()">Next</button></div>'}
+function n4(){var l=vals("lg");if(!l.length)return err("Pick at least one language.");draft.langs=l;draft.skills=vals("sk");draft.spec=vals("sp");go("signup/5")}
 
-/* Mentor: requests and students */
-function reqTab(){var pe=pairs.filter(p=>p.status=="pending"),ac=act();
-app.innerHTML=`<h2>Welcome, ${esc(P.name)}</h2><p class="mut">${esc(P.profession)} · ${esc(P.exp)} yrs · ${P.plan=="premium"?"unlimited":"up to 3"} active students</p><h3>Requests</h3>`+
-(pe.length?pe.map(p=>`<div class="card wide"><b>${esc(p.s.name)}</b> (age ${p.s.age}) · ${esc(p.s.lang)} · ${esc(p.s.level)} · ${esc(p.s.stage)} <span class="tag">${score(P,p.s)}% match</span><br><button class="btn" onclick="resp('${p.id}','active')">Accept</button><button class="btn alt" onclick="resp('${p.id}','declined')">Decline</button></div>`).join(""):'<p class="mut">No pending requests.</p>')+
-"<h3>Active students</h3>"+(ac.length?ac.map(p=>`<div class="card wide"><b>${esc(p.s.name)}</b> · ${esc(p.s.lang)} · ${esc(p.s.level)}${nudge(p)}</div>`).join(""):'<p class="mut">None yet.</p>')}
-function resp(id,st){if(st=="active"&&P.plan!="premium"&&act().length>=3)return alert("Basic mentors can have 3 active students. Upgrade on the Plans tab for unlimited.");api("/pairs?id=eq."+id,{method:"PATCH",body:{status:st}}).then(reload).then(render,e=>alert(msg(e)))}
+function s5(){app.innerHTML='<div class="card">'+prog(5,6)+'<h2>Verification</h2><p style="color:var(--mut)">Every mentor is reviewed before being matched with students.</p>'+
+'<label for="vl">LinkedIn, GitHub or employer/school page (https://)</label><input id="vl" value="'+esc(draft.vlink)+'">'+
+'<label for="r1">Reference 1 email (manager, teacher or colleague)</label><input id="r1" type="email" value="'+esc((draft.refs||[])[0])+'">'+
+'<label for="r2">Reference 2 email</label><input id="r2" type="email" value="'+esc((draft.refs||[])[1])+'">'+
+'<label style="display:flex;gap:8px;align-items:flex-start;font-weight:400"><input id="cc" type="checkbox" style="width:auto;margin-top:5px">I agree to the Mentor Code of Conduct: no private contact outside PairUp, no in-person meetings with students under 18, public places only, and I consent to a background check.</label>'+
+'<p class="err" id="err"></p><button class="btn alt" onclick="go(\'signup/4\')">Back</button> <button class="btn" onclick="n5()">Next</button></div>'}
+function n5(){var r=[v("r1").toLowerCase(),v("r2").toLowerCase()];if(!/^https:\/\//.test(v("vl")))return err("Add a profile link starting with https://");
+if(!r.every(function(x){return /^\S+@\S+\.\S+$/.test(x)})||r[0]==r[1]||r.indexOf(draft.email)>-1)return err("Enter two different reference emails (not your own).");
+if(!document.getElementById("cc").checked)return err("You must agree to the Code of Conduct.");draft.vlink=v("vl");draft.refs=r;go("plans")}
+function n2s(){if(draft.age<18&&!/^\S+@\S+\.\S+$/.test(v("ge")))return err("Enter a parent or guardian email.");if(draft.age<18)draft.ge=v("ge").toLowerCase();draft.lang=v("l");draft.level=v("lv");draft.stage=v("st");draft.interests=vals("in");go("plans")}
+function plans(){if(!draft.email){go("home");return}
+app.innerHTML=prog(draft.role=="mentor"?6:3,draft.role=="mentor"?6:3)+'<h2>Choose a membership</h2><div class="plans">'+
+'<div class="plan"><h3>Basic</h3><div class="price">Free</div><p>Get started with the essentials.</p><button class="btn alt" onclick="finish(\'basic\')">Continue with Basic</button></div>'+
+'<div class="plan pro"><h3>Premium <span class="tag">Popular</span></h3><div class="price">$12<small style="font-size:1rem">/mo</small></div><p>More time, more tools.</p><button class="btn" onclick="finish(\'premium\')">Go Premium</button></div></div>'+
+'<div class="scroll" style="margin-top:22px"><table><tr><th>Feature</th><th>Basic</th><th>Premium</th></tr>'+
+(draft.role=="mentor"?[["Active students","Up to 3","Unlimited"],["Profile listing","Standard","Featured at top"],["Video sessions","–","Included"],["Student progress reports","–","Included"]]:[["Mentor sessions","1 per month","Unlimited"],["Mentor choice","Assigned","Pick your own"],["Code review","–","Included"],["Progress tracking","Basic","Detailed"]]).map(function(r){return '<tr><td>'+r.join('</td><td>')+'</td></tr>'}).join("")+'</table></div>'}
+function score(m,s){if((m.langs||[]).indexOf(s.lang)<0)return 0;var y=YRS[m.exp]||0,n=NEED[s.level]||1,sc=50+(y>=n?40:40*(.4+.6*y/n));
+var P={"Learning basics":"Beginners","Interview prep":"Interview prep","Career change":"Career guidance"};
+if((m.spec||[]).indexOf(P[s.stage])>-1)sc+=5;if((s.interests||[]).some(function(i){return(m.spec||[]).indexOf(i)>-1}))sc+=5;return Math.min(100,Math.round(sc))}
 
-/* Chat workspace */
-function psel(a,fn){if(!a.find(p=>p.id==cur))cur=a[0].id;return`<label for="ps">Session with</label><select id="ps" style="max-width:320px" onchange="cur=this.value;${fn}()">${a.map(p=>`<option value="${p.id}"${p.id==cur?" selected":""}>${esc(oth(p).name)} · ${esc(p.s.lang)}</option>`).join("")}</select>`}
-function chatTab(){var a=act();if(!a.length){app.innerHTML='<div class="card"><p>Chat opens as soon as a mentor accepts a match.</p></div>';return}
-var p=a.find(x=>x.id==cur)||a[0],tp=TOPICS[p.s.level]||TOPICS.Beginner;
-app.innerHTML=psel(a,"chatTab")+`<div class="chat" style="margin-top:12px"><div><div id="msgs" aria-live="polite"></div><textarea id="mb" style="min-height:60px;margin-top:8px" maxlength="1000" placeholder="Write a message…"></textarea><label class="row"><input type="checkbox" id="cd">Send as code</label><button class="btn" onclick="send()">Send</button><p class="mut"><small>Messages are filtered: inappropriate words, links, emails and phone numbers are hidden. Keep it on PairUp.</small></p></div>
-<div class="card wide"><h3 style="margin-top:0">Learn together</h3><p class="mut">Suggested ${esc(p.s.level)} topics for ${esc(p.s.lang)}. Tap to start a discussion.</p>${tp.map(t=>`<button class="topic" onclick="$('mb').value='Let\\'s cover: ${t}';$('mb').focus()">${t}</button>`).join("")}</div></div>`;loadMsgs()}
-function loadMsgs(){var id=cur;api("/messages?pair=eq."+id+"&order=created_at.desc&limit=100").then(r=>{var b=$("msgs");if(!b||id!=cur)return;var n=b.scrollHeight-b.scrollTop-b.clientHeight<60||!b.children.length;
-b.innerHTML=r.reverse().map(m=>{var mine=m.sender==P.id,t=esc(clean(m.body));return`<div class="bub${mine?" me":""}"><small>${mine?"You":esc(oth(pairs.find(p=>p.id==id)).name)}</small>${m.code?`<pre>${t}</pre>`:t}</div>`}).join("")||'<p class="mut">Say hi!</p>';if(n)b.scrollTop=b.scrollHeight},()=>{})}
-function send(){var t=clean($("mb").value.trim());if(!t)return;api("/messages",{method:"POST",body:{pair:cur,sender:P.id,body:t,code:$("cd").checked}}).then(()=>{$("mb").value="";loadMsgs()},e=>alert(msg(e)))}
-setInterval(()=>{if(S&&P&&tab=="chat"&&$("msgs"))loadMsgs()},4000);
-
-/* Scheduling */
-function meetTab(){var a=act();if(!a.length){app.innerHTML='<div class="card"><p>You can schedule sessions once a mentor accepts a match.</p></div>';return}
-var d=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
-app.innerHTML=psel(a,"meetTab")+`<div class="card wide"><h3 style="margin-top:0">Propose a session</h3><label for="dt">Date and time</label><input id="dt" type="datetime-local" min="${d}">
-<label>Format</label><label class="row"><input type="radio" name="md" value="online" checked onchange="mode()">Online</label><label class="row"><input type="radio" name="md" value="in-person" onchange="mode()">In person</label>
-<div id="on"><label for="lk">Meeting link</label><input id="lk" value="https://meet.jit.si/PairUp-${cur.slice(0,12)}"></div>
-<div id="ip" hidden>${sel("vn","Where to meet",VENUES)}${f("ad","Venue name and address")}<p class="mut"><small>Meet only in a public place. Students under 18 should tell a parent or guardian where and when.</small></p></div>
-<p class="err" id="err"></p><button class="btn" onclick="propose()">Propose</button></div><h3>Sessions</h3><div id="ml"></div>`;list()}
-function mode(){var ip=document.querySelector('input[name="md"]:checked').value=="in-person";$("ip").hidden=!ip;$("on").hidden=ip}
-function propose(){var t=new Date($("dt").value),ip=document.querySelector('input[name="md"]:checked').value=="in-person";
-if(isNaN(t)||t<Date.now())return err("Pick a date and time in the future.");if(ip&&!v("ad"))return err("Enter the venue name and address.");if(!ip&&!/^https:\/\//.test(v("lk")))return err("Enter an https:// meeting link.");
-api("/meetings",{method:"POST",body:{pair:cur,starts_at:t.toISOString(),mode:ip?"in-person":"online",place:ip?v("vn")+": "+v("ad"):null,link:ip?null:v("lk"),created_by:P.id}}).then(reload).then(()=>{$("dt").value="";err("");list()},e=>err(msg(e)))}
-function list(){var l=mt.filter(m=>m.pair==cur);$("ml").innerHTML=l.length?l.map(m=>{var past=new Date(m.starts_at)<Date.now(),b="";
-if(m.status=="proposed"&&m.created_by!=P.id)b+=`<button class="btn" onclick="mset('${m.id}','confirmed')">Confirm</button>`;
-if(m.status=="confirmed"&&past)b+=`<button class="btn" onclick="mset('${m.id}','done')">Mark done</button>`;
-if(m.status=="proposed"||m.status=="confirmed")b+=`<button class="btn alt" onclick="mset('${m.id}','cancelled')">Cancel</button>`;
-return`<div class="card wide"><b>${new Date(m.starts_at).toLocaleString([], {dateStyle:"medium",timeStyle:"short"})}</b> <span class="tag">${m.mode}</span> <span class="tag">${m.status}</span><br>${m.mode=="online"?(/^https:\/\//.test(m.link||"")?`<a href="${esc(m.link)}" target="_blank" rel="noopener noreferrer">Join online</a>`:"Online"):esc(m.place)}<br>${b}</div>`}).join(""):'<p class="mut">No sessions yet. Propose one above.</p>'}
-function mset(id,st){api("/meetings?id=eq."+id,{method:"PATCH",body:{status:st}}).then(reload).then(list,e=>alert(msg(e)))}
-
-/* Plans + payment: checkout happens on Stripe; only the server-side webhook can set plan=premium */
-function plansTab(){var m=P.role=="mentor",pr=P.plan=="premium",rows=m?[["Active students","Up to 3","Unlimited"],["Profile listing","Standard","Featured at top"]]:[["Mentors at once","1","Up to 3"],["Sessions per month","1","Unlimited"]],
-url=CFG.pay?CFG.pay+(CFG.pay.includes("?")?"&":"?")+"client_reference_id="+P.id:"";
-app.innerHTML=`<h2>Your plan: <span class="tag">${P.plan}</span></h2><div class="card wide"><table style="width:100%;border-collapse:collapse"><tr><th align="left">Feature</th><th align="left">Basic · Free</th><th align="left">Premium · $12/mo</th></tr>${rows.map(r=>`<tr><td>${r.join("</td><td>")}</td></tr>`).join("")}</table>`+
-(pr?`<p>You're on Premium. Thank you!</p>${CFG.portal?`<a href="${esc(CFG.portal)}">Manage or cancel subscription</a>`:""}`:url?`<a class="btn" style="display:inline-block;text-decoration:none" href="${esc(url)}">Upgrade to Premium</a><p class="mut"><small>Secure checkout by Stripe. PairUp never sees your card. Your plan updates automatically after payment; <a href="#" onclick="refreshMe();return false">refresh</a> if it hasn't yet.</small></p>`:'<p class="mut">Payments are not switched on yet.</p>')+"</div>"}
-function refreshMe(){boot().then(render,fail)}
-function route(){var h=location.hash.slice(1)||"home";nav();if(S&&P)return render();
-if(h=="login")login();else if(h=="signup"&&draft.role)signup();else home()}
-window.addEventListener("hashchange",route);
-if(S)boot().then(route,()=>{S=null;sv("pu_s",null);route()});else route();
+var CFG={url:"https://iuftqnvraictawrgvmar.supabase.co",key:"sb_publishable_B6Ulfa4LPzaoX0paP3yeLw_1zYqWLLh"};
+var S=ld("pairup_sess",null),P=null,PAIRS=[],DIR=[],MEETS=[],MSGS=[],ADM=false,HUB=null,draft={},app=document.getElementById("app");
+var INTS=["AI","Public speaking","Networking","Career guidance","Data science","Game dev","Mobile"],PLACES=["Public library","Coffee shop","Community center","School (with permission)","University campus","Other public place"];
+var YRS={"Under 1":.5,"1–3":2,"3–5":4,"5–10":7.5,"10+":12},NEED={Beginner:1,Intermediate:3,Advanced:5};
+function setS(x,keep){S=x;if(x&&keep!==undefined)x.keep=keep;try{localStorage.removeItem("pairup_sess");if(x&&x.keep)localStorage.setItem("pairup_sess",JSON.stringify(x))}catch(e){}}
+function sessFrom(j,keep){return{access_token:j.access_token,refresh_token:j.refresh_token,expires_at:Math.floor(Date.now()/1000)+(j.expires_in||3600),uid:j.user.id,keep:keep}}
+function hdr(){var h={apikey:CFG.key,"Content-Type":"application/json"};if(S)h.Authorization="Bearer "+S.access_token;return h}
+function authPost(path,body){return fetch(CFG.url+"/auth/v1/"+path,{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.msg||j.error_description||j.message||"Something went wrong");return j})})}
+function fresh(){if(!S||S.expires_at>Date.now()/1000+60)return Promise.resolve();return authPost("token?grant_type=refresh_token",{refresh_token:S.refresh_token}).then(function(j){setS(sessFrom(j,S.keep),S.keep)}).catch(function(){setS(null)})}
+function api(m,path,body,extra){return fresh().then(function(){if(!S&&path.indexOf("rpc/")!=0&&false)throw new Error("auth");var o={method:m,headers:hdr()};if(extra)for(var k in extra)o.headers[k]=extra[k];if(body!==undefined)o.body=JSON.stringify(body);return fetch(CFG.url+"/rest/v1/"+path,o)}).then(function(r){if(r.status==401){setS(null);go("login");throw new Error("Please log in again.")}return r.text().then(function(t){var j=t?JSON.parse(t):null;if(!r.ok)throw new Error((j&&j.message)||"Request failed");return j})})}
+function loadAll(){if(!S)return Promise.resolve(false);var old=JSON.stringify([P,PAIRS,DIR,MEETS]);
+return Promise.all([api("GET","profiles?select=*&id=eq."+S.uid),api("GET","my_pairs?select=*"),api("GET","mentor_directory?select=*"),api("GET","meetings?select=*&order=mdate,mtime"),api("GET","admins?select=user_id")]).then(function(r){P=r[0][0]||null;PAIRS=r[1];DIR=r[2];MEETS=r[3];ADM=r[4].length>0;return JSON.stringify([P,PAIRS,DIR,MEETS])!=old}).catch(function(){return false})}
+function loadMsgs(){var t=window.th;if(!t)return Promise.resolve();return api("GET","messages?select=*&pair_id=eq."+t+"&order=created_at.asc&limit=500").then(function(r){MSGS=r}).catch(function(){})}
+function nav(){var r=document.getElementById("navr");r.innerHTML=S?'<a href="#dash">Dashboard</a><a href="#chat">Chat</a><a href="#meet">Meetings</a>'+(ADM?'<a href="#hub">Admin</a>':'')+'<span style="margin-left:14px">'+esc(P?P.name:"")+'</span><button class="link" onclick="out()">Log out</button>':'<a href="#login">Log in</a>'}
+function out(){if(S)fetch(CFG.url+"/auth/v1/logout",{method:"POST",headers:hdr()}).catch(function(){});setS(null);P=null;PAIRS=[];DIR=[];MEETS=[];MSGS=[];ADM=false;window.tried=0;go("home");route()}
+function guard(){if(!S){go("login");return false}if(!P){app.innerHTML="<p>Loading…</p>";loadAll().then(function(){if(P)route();else{setS(null);go("login")}});return false}return true}
+function ranked(){return DIR.filter(function(m){return score(m,P.data)>0&&(m.plan=="premium"||m.n_students<3)}).map(function(m){var c=score(m,P.data);return{m:m,s:c,r:c+Math.max(0,20-6*m.n_students)}}).sort(function(a,b){return b.r-a.r})}
+function choose(id,auto){return api("POST","rpc/choose_mentor",{m:id,auto:!!auto}).then(loadAll).then(function(){dash()}).catch(function(e){alert(e.message);dash()})}
+function mstat(pid){var d=0,n=0;MEETS.forEach(function(x){if(x.pair_id==pid){if(x.status=="completed")d++;if(x.status!="cancelled")n++}});return{done:d,sched:n}}
+function banner(c){if(!c)return"";var st=mstat(c.pair_id);if(st.sched==0){var late=(Date.now()-new Date(c.created_at))/864e5>7;return '<div class="card wide" style="border-color:'+(late?'#c0392b':'var(--acc)')+';margin-bottom:12px"><b>'+(late?'Overdue: ':'')+'Schedule your first meeting with '+esc(c.mentor_name)+'.</b> You agreed to meet at least twice a month. <a class="link" style="margin:0" href="#meet">Schedule now</a></div>'}
+return '<p>Meetings completed: <b>'+st.done+'</b> · <a class="link" style="margin:0" href="#meet">Meetings</a> · <a class="link" style="margin:0" href="#chat">Chat</a></p>'}
+function login(){app.innerHTML='<div class="card"><h2>Log in</h2><label for="e">Email</label><input id="e" type="email" autocomplete="username"><label for="p">Password</label><input id="p" type="password" autocomplete="current-password"><label style="display:flex;gap:8px;align-items:center;font-weight:400"><input id="rm" type="checkbox" style="width:auto" checked>Keep me signed in on this device</label><p class="err" id="err"></p><button class="btn" onclick="doLogin()">Log in</button> <button class="link" onclick="forgot()">Forgot password?</button></div>'}
+function doLogin(){var k=document.getElementById("rm").checked;authPost("token?grant_type=password",{email:v("e").toLowerCase(),password:document.getElementById("p").value}).then(function(j){setS(sessFrom(j,k),k);return loadAll()}).then(function(){go("dash")}).catch(function(e){err(e.message=="Invalid login credentials"?"Wrong email or password.":e.message)})}
+function forgot(){if(!v("e"))return err("Type your email above first.");authPost("recover",{email:v("e").toLowerCase()}).then(function(){err("If that email has an account, a reset link is on its way.")}).catch(function(e){err(e.message)})}
+function newpw(){app.innerHTML='<div class="card"><h2>Choose a new password</h2><label for="np">New password (8+ characters)</label><input id="np" type="password" autocomplete="new-password"><p class="err" id="err"></p><button class="btn" onclick="setPw()">Save password</button></div>'}
+function setPw(){var p=document.getElementById("np").value;if(p.length<8)return err("Use at least 8 characters.");fetch(CFG.url+"/auth/v1/user",{method:"PUT",headers:hdr(),body:JSON.stringify({password:p})}).then(function(r){if(!r.ok)throw new Error("Could not update password");return loadAll()}).then(function(){go("dash")}).catch(function(e){err(e.message)})}
+function authLink(h){var q={};h.split("&").forEach(function(p){var kv=p.split("=");q[kv[0]]=decodeURIComponent(kv[1]||"")});if(!q.access_token){go("home");return}
+var uid=JSON.parse(atob(q.access_token.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"))).sub;
+setS({access_token:q.access_token,refresh_token:q.refresh_token,expires_at:Math.floor(Date.now()/1000)+(+q.expires_in||3600),uid:uid},true);history.replaceState(null,"",location.pathname);
+if(q.type=="recovery"){newpw();return}loadAll().then(function(){go("dash");route()})}
+function finish(p){var d=draft,pf={plan:p};
+if(d.role=="mentor"){pf.profession=d.profession;pf.exp=d.exp;pf.bio=d.bio;pf.langs=d.langs;pf.skills=d.skills;pf.spec=d.spec}else{pf.lang=d.lang;pf.level=d.level;pf.stage=d.stage;pf.interests=d.interests||[]}
+authPost("signup",{email:d.email,password:d.pw,data:{role:d.role,name:d.name,age:d.age,guardian:d.ge||"",vlink:d.vlink||"",refs:d.refs||[],profile:pf}}).then(function(j){draft={};if(j.access_token){setS(sessFrom(j,true),true);return loadAll().then(function(){go("dash")})}
+app.innerHTML='<div class="card"><h2>Check your email</h2><p>We sent a confirmation link to '+esc(d.email)+'. Open it, then log in.</p></div>'}).catch(function(e){alert("Could not create your account: "+e.message+". Mentors must be 18 or older, and students under 18 need a guardian email.")})}
+function dash(){if(!guard())return;var head='<h2>Welcome, '+esc(P.name)+'</h2>';
+if(P.role=="mentor"){
+if(P.status!="approved"){app.innerHTML=head+'<div class="card wide"><h3>Your profile is '+(P.status=="pending"?"under review":esc(P.status))+'</h3><p>Students cannot see you or be matched with you until our team verifies your references and background check.</p></div>';return}
+var L=P.data.langs||[],sel=window.sl||"All";if(sel!="All"&&L.indexOf(sel)<0)sel="All";var st=PAIRS.filter(function(x){return sel=="All"||x.student_lang==sel});
+app.innerHTML=head+'<p style="color:var(--mut)">'+esc(P.data.profession)+' · '+esc(P.data.exp)+' yrs'+(P.data.plan!="premium"?' · Basic plan: up to 3 students':'')+'</p><label for="sl">Language</label><select id="sl" style="max-width:240px" onchange="window.sl=this.value;dash()">'+["All"].concat(L).map(function(l){return '<option'+(l==sel?' selected':'')+'>'+esc(l)+'</option>'}).join("")+'</select>'+
+'<div class="card wide scroll" style="margin-top:16px">'+(st.length?'<table><tr><th>Student</th><th>Age</th><th>Language</th><th>Level</th><th>Match</th><th>How</th><th>Meetings</th></tr>'+st.map(function(x){var ms=mstat(x.pair_id);return '<tr><td>'+esc(x.student_name)+'</td><td>'+x.student_age+'</td><td>'+esc(x.student_lang)+'</td><td>'+esc(x.student_level)+'</td><td>'+score(P.data,{lang:x.student_lang,level:x.student_level,stage:x.student_stage,interests:x.student_interests})+'%</td><td>'+(x.auto?'Auto-matched':'Chose you')+'</td><td>'+ms.done+' done'+(ms.sched?'':' <span class="tag">needs first meeting</span>')+'</td></tr>'}).join("")+'</table>':'<p>No students matched yet. When a student signs up for a language you teach, they appear here automatically.</p>')+'</div>';return}
+var cur=PAIRS[0],opts=ranked();
+if(!cur&&!window.tried&&opts.length){window.tried=1;app.innerHTML=head+"<p>Finding your mentor…</p>";choose(opts[0].m.id,true);return}
+var card=function(m,c,btn){return '<div class="card wide" style="margin-bottom:10px"><b>'+esc(m.name)+'</b> · '+esc(m.profession)+' · '+esc(m.exp)+' yrs · <span class="tag">'+c+'% match</span><p>'+esc(m.bio)+'</p><small>Teaches '+esc((m.langs||[]).join(", "))+(m.spec&&m.spec.length?' · '+esc(m.spec.join(", ")):'')+'</small>'+btn+'</div>'};
+var cm=cur?{name:cur.mentor_name,profession:cur.mentor_profession,exp:cur.mentor_exp,bio:cur.mentor_bio,langs:cur.mentor_langs,spec:cur.mentor_spec}:null;
+var more=opts.filter(function(o){return!cur||o.m.id!=cur.mentor_id}).slice(0,5);
+app.innerHTML=head+'<p>Learning <b>'+esc(P.data.lang)+'</b> · '+esc(P.data.level)+' · '+esc(P.data.stage)+'</p>'+banner(cur)+'<h3>'+(cur?(cur.auto?'Your matched mentor':'Your chosen mentor'):'Your mentor')+'</h3>'+(cur?card(cm,score(cm,P.data),''):'<div class="card wide"><p>No mentor is available for '+esc(P.data.lang)+' yet. You will be matched automatically when one joins.</p></div>')+
+(more.length?'<h3 style="margin-top:22px">'+(cur?'Other mentors you can choose':'Mentors you can choose')+'</h3>'+more.map(function(o){return card(o.m,o.s,'<button class="btn alt" onclick="choose(\''+o.m.id+'\')">Choose this mentor</button>')}).join(""):'')}
+function threads(){return PAIRS.map(function(x){return{id:x.pair_id,label:x.my_role=="student"?x.mentor_name:x.student_name}})}
+function chat(){if(!guard())return;var T=threads();
+if(!T.length){app.innerHTML='<h2>Workspace chat</h2><div class="card wide"><p>'+(P.role=="student"?"Chat opens once you have a mentor.":"Chat opens when a student is matched with you.")+'</p></div>';return}
+if(!T.some(function(t){return t.id==window.th}))window.th=T[0].id;
+var Q=["Ask about my career path","Can you review my code?","Teach me AI basics","Help me practice public speaking"];
+app.innerHTML='<h2>Workspace chat</h2>'+(T.length>1?'<select id="thsel" style="max-width:260px" onchange="window.th=this.value;loadMsgs().then(function(){refreshChat(true)})">'+T.map(function(t){return '<option value="'+t.id+'"'+(t.id==window.th?' selected':'')+'>'+esc(t.label)+'</option>'}).join("")+'</select>':'<p>With <b>'+esc(T[0].label)+'</b></p>')+
+'<div class="card wide"><div id="msgs" style="height:340px;overflow-y:auto"></div><p class="err" id="err"></p><div class="chips" style="margin:8px 0">'+Q.map(function(s){return '<button class="btn alt" style="margin:0;padding:6px 12px;text-transform:none;letter-spacing:0" onclick="document.getElementById(\'mt\').value=this.textContent">'+s+'</button>'}).join("")+'</div><textarea id="mt" style="min-height:60px" aria-label="Message" maxlength="1000"></textarea><button class="btn" onclick="send()">Send</button></div>'+
+'<div class="card wide" style="margin-top:12px"><label for="rp">Something wrong? Report a problem</label><input id="rp" placeholder="What happened?" maxlength="500"><button class="btn alt" onclick="report()">Report</button><p id="rpm" style="color:var(--mut)"></p></div><p style="color:var(--mut);font-size:.9rem">Messages are filtered for inappropriate language. Phone numbers, emails and links are blocked. Meet only in public places.</p>';
+MSGS=[];refreshChat(true);loadMsgs().then(function(){refreshChat(true)})}
+function refreshChat(f){var el=document.getElementById("msgs");if(!el)return;var T=threads(),lab=(T.filter(function(t){return t.id==window.th})[0]||{}).label||"",end=el.scrollTop+el.clientHeight>=el.scrollHeight-30;
+el.innerHTML=MSGS.length?MSGS.map(function(m){var mine=m.sender==S.uid;return '<div style="display:flex;justify-content:'+(mine?'flex-end':'flex-start')+';margin:6px 0"><div style="max-width:80%;padding:8px 12px;border-radius:14px;background:'+(mine?'var(--acc);color:var(--onacc)':'var(--bg)')+'"><small>'+esc(mine?'You':lab)+'</small><br>'+esc(m.body)+'</div></div>'}).join(""):'<p style="color:var(--mut)">No messages yet. Say hello to get started.</p>';if(f||end)el.scrollTop=el.scrollHeight}
+function send(){var t=v("mt"),e=document.getElementById("err");if(!t)return;e.textContent="";
+api("POST","messages",{pair_id:window.th,body:t},{Prefer:"return=representation"}).then(function(r){document.getElementById("mt").value="";if(r&&r[0]&&r[0].body!=t)e.textContent="Some words were hidden. Please keep chat respectful.";return loadMsgs()}).then(function(){refreshChat(true)}).catch(function(x){e.textContent=x.message.replace(/^blocked: /,"For safety: ")})}
+function report(){var t=v("rp");if(!t)return;api("POST","reports",{pair_id:window.th,text:t}).then(function(){document.getElementById("rp").value="";document.getElementById("rpm").textContent="Thanks. Our team will review this."}).catch(function(x){document.getElementById("rpm").textContent=x.message})}
+function meet(){if(!guard())return;var T=threads();
+if(!T.length){app.innerHTML='<h2>Meetings</h2><div class="card wide"><p>You can schedule meetings once you are matched with a '+(P.role=="student"?"mentor":"student")+'.</p></div>';return}
+app.innerHTML='<h2>Meetings</h2><p style="color:var(--mut)">Commitment: meet at least twice a month. Schedule your first meeting within 7 days of matching.</p><div class="card wide"><h3>Schedule a meeting</h3>'+
+(T.length>1?'<label for="wt">With</label><select id="wt">'+T.map(function(t){return '<option value="'+t.id+'">'+esc(t.label)+'</option>'}).join("")+'</select>':'<input type="hidden" id="wt" value="'+T[0].id+'"><p>With <b>'+esc(T[0].label)+'</b></p>')+
+'<label for="md">Date</label><input id="md" type="date" min="'+new Date().toISOString().slice(0,10)+'"><label for="mtm">Time</label><input id="mtm" type="time"><label>Type</label><div class="chips"><label><input type="radio" name="mm" value="online" checked onchange="setMode()">Online</label><label><input type="radio" name="mm" value="in-person" onchange="setMode()">In person</label></div>'+
+'<div id="onl"><label for="ml">Meeting link (optional)</label><input id="ml" placeholder="https://… (Zoom, Meet, etc.)"></div>'+
+'<div id="inp" style="display:none"><label for="mp">Kind of public place</label><select id="mp">'+PLACES.map(function(p){return '<option>'+p+'</option>'}).join("")+'</select><label for="mn">Place name or address</label><input id="mn" placeholder="e.g. Burton Barr Central Library, Phoenix"><p style="color:var(--mut);font-size:.9rem">In-person meetings must be in a public place. Students under 18 can meet online only.</p></div>'+
+'<label for="mo">Topic (optional)</label><input id="mo" maxlength="200" placeholder="e.g. Python loops, career path"><p class="err" id="err"></p><button class="btn" onclick="book()">Request meeting</button></div><h3 style="margin-top:22px">Your meetings</h3><div id="mlist"></div>';refreshMeets()}
+function setMode(){var o=document.querySelector('input[name="mm"]:checked').value=="online";document.getElementById("onl").style.display=o?"":"none";document.getElementById("inp").style.display=o?"none":""}
+function book(){var d=v("md"),t=v("mtm"),m=document.querySelector('input[name="mm"]:checked').value,pl=v("mn"),lk=v("ml"),pid=v("wt"),pr=PAIRS.filter(function(x){return x.pair_id==pid})[0];
+if(!d||!t)return err("Pick a date and time.");if(new Date(d+"T"+t)<new Date())return err("Pick a time in the future.");
+if(m=="in-person"&&pr&&pr.student_age<18)return err("In-person meetings are not available for students under 18. Please meet online.");
+if(m=="online"&&lk&&!/^https:\/\//.test(lk))return err("Meeting links must start with https://");if(m=="in-person"&&!pl)return err("Enter the public place name or address.");
+api("POST","meetings",{pair_id:pid,mdate:d,mtime:t,mode:m,place:m=="in-person"?v("mp")+": "+pl:null,link:m=="online"&&lk?lk:null,topic:v("mo")||null}).then(loadAll).then(function(){meet()}).catch(function(e){err(e.message)})}
+function act(id,a){api("POST","rpc/set_meeting_status",{mid:id,a:a}).then(loadAll).then(function(){refreshMeets()}).catch(function(e){alert(e.message)})}
+function refreshMeets(){var el=document.getElementById("mlist");if(!el)return;var L={};threads().forEach(function(t){L[t.id]=t.label});var ms=MEETS.filter(function(x){return L[x.pair_id]});
+el.innerHTML=ms.length?ms.map(function(x){var st=x.status,b="",dt=new Date(x.mdate+"T"+x.mtime).toLocaleString([],{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+if(st=="requested"&&x.created_by!=S.uid)b+='<button class="btn" onclick="act(\''+x.id+'\',\'confirm\')">Confirm</button> ';
+if(st=="requested"||st=="confirmed")b+='<button class="btn alt" onclick="act(\''+x.id+'\',\'cancel\')">Cancel</button> ';
+if(st=="confirmed")b+='<button class="btn alt" onclick="act(\''+x.id+'\',\'done\')">Mark completed</button>';
+return '<div class="card wide" style="margin-bottom:10px"><b>'+dt+'</b> <span class="tag">'+st+'</span><br>With '+esc(L[x.pair_id])+' · '+x.mode+(x.topic?' · '+esc(x.topic):'')+(x.mode=="online"?(x.link?'<br><a href="'+esc(x.link)+'" target="_blank" rel="noopener">Join meeting</a>':'<br>No link added yet'):'<br>'+esc(x.place)+' · <a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.place)+'" target="_blank" rel="noopener">Open in Maps</a>')+'<br>'+b+'</div>'}).join(""):'<p style="color:var(--mut)">No meetings yet.</p>'}
+function hub(){if(!guard())return;document.getElementById("brand").textContent="PairUp Admin";
+if(!ADM){app.innerHTML='<h2>Admin</h2><div class="card wide"><p>This page is for PairUp admins only.</p></div>';return}
+app.innerHTML="<p>Loading…</p>";Promise.all([api("GET","profiles?select=*&order=created_at"),api("GET","vetting?select=*"),api("GET","reports?select=*&order=created_at.desc&limit=50")]).then(function(r){HUB={p:r[0],v:r[1],r:r[2]};drawHub()}).catch(function(e){app.innerHTML="<p>"+esc(e.message)+"</p>"})}
+function review(id,st){api("POST","rpc/admin_set_status",{mentor:id,st:st}).then(hub).catch(function(e){alert(e.message)})}
+function drawHub(){var f=window.hf||"all",p=HUB.p,V={};HUB.v.forEach(function(x){V[x.mentor_id]=x});var pend=p.filter(function(x){return x.role=="mentor"&&x.status!="approved"}),rows=p.filter(function(x){return f=="all"||x.role==f});
+var c=function(r){return p.filter(function(x){return x.role==r}).length};
+app.innerHTML='<div class="card wide hub"><h2>Admin</h2><div class="stats"><div class="stat"><b>'+p.length+'</b>Members</div><div class="stat"><b>'+c("mentor")+'</b>Mentors</div><div class="stat"><b>'+c("student")+'</b>Students</div><div class="stat"><b>'+pend.length+'</b>Mentors to review</div><div class="stat"><b>'+MEETS.filter(function(x){return x.status=="completed"}).length+'</b>Meetings done</div><div class="stat"><b>'+HUB.r.length+'</b>Reports</div></div>'+
+'<h3>Mentors to review</h3><div class="scroll">'+(pend.length?'<table><tr><th>Name</th><th>Email</th><th>Profile link</th><th>References</th><th>Status</th><th></th></tr>'+pend.map(function(m){var x=V[m.id]||{};return '<tr><td>'+esc(m.name)+'</td><td>'+esc(m.email)+'</td><td><a href="'+esc(x.vlink)+'" target="_blank" rel="noopener">link</a></td><td>'+esc(x.ref1)+'<br>'+esc(x.ref2)+'</td><td>'+esc(m.status)+'</td><td><button class="btn" style="margin:0" onclick="review(\''+m.id+'\',\'approved\')">Approve</button> <button class="btn alt" style="margin:0" onclick="review(\''+m.id+'\',\'rejected\')">Reject</button></td></tr>'}).join("")+'</table>':'<p>Nobody waiting.</p>')+'</div>'+
+'<h3 style="margin-top:22px">All members</h3><select id="f" style="width:auto" onchange="window.hf=this.value;drawHub()">'+["all","mentor","student"].map(function(o){return '<option'+(o==f?' selected':'')+'>'+o+'</option>'}).join("")+'</select> <button class="btn alt" style="margin:0 0 0 8px" onclick="csv()">Export CSV</button>'+
+'<div class="scroll" style="margin-top:14px"><table><tr><th>Name</th><th>Role</th><th>Age</th><th>Email</th><th>Language</th><th>Level / experience</th><th>Plan</th><th>Status</th><th>Joined</th><th></th></tr>'+rows.map(function(m){var d=m.data||{};return '<tr><td>'+esc(m.name)+'</td><td>'+m.role+'</td><td>'+m.age+'</td><td>'+esc(m.email)+'</td><td>'+esc(m.role=="mentor"?(d.langs||[]).join(", "):d.lang)+'</td><td>'+esc(m.role=="mentor"?d.exp+" yrs":d.level)+'</td><td>'+esc(d.plan)+'</td><td>'+esc(m.status)+'</td><td>'+String(m.created_at).slice(0,10)+'</td><td>'+(m.role=="mentor"&&m.status=="approved"?'<button class="btn alt" style="margin:0" onclick="review(\''+m.id+'\',\'suspended\')">Suspend</button>':'')+'</td></tr>'}).join("")+'</table></div>'+
+'<h3 style="margin-top:22px">Recent reports</h3>'+(HUB.r.length?HUB.r.map(function(x){return '<p>'+String(x.created_at).slice(0,16).replace("T"," ")+' · '+esc(x.text)+'</p>'}).join(""):'<p>No reports.</p>')+'</div>'}
+function csv(){var t="name,role,age,email,language,level_or_experience,plan,status,joined\n"+HUB.p.map(function(m){var d=m.data||{};return[m.name,m.role,m.age,m.email,m.role=="mentor"?(d.langs||[]).join("|"):d.lang,m.role=="mentor"?d.exp:d.level,d.plan,m.status,String(m.created_at).slice(0,10)].map(function(x){return '"'+String(x==null?"":x).replace(/"/g,'""')+'"'}).join(",")}).join("\n");var w=window.open("","_blank");if(w){w.document.write("<pre>"+esc(t)+"</pre>")}}
+function route(){var h=location.hash.slice(1)||"home";nav();document.getElementById("brand").textContent="PairUp";
+if(/access_token=/.test(h))return authLink(h);
+if(h=="home")home();else if(h=="login")login();else if(h=="plans")plans();else if(h=="dash")dash();else if(h=="chat")chat();else if(h=="meet")meet();else if(h=="hub")hub();
+else if(h.indexOf("signup")==0){if(!draft.role){go("home");return}var s=h.split("/")[1]||"1";if(s=="1")s1();else if(s=="2")s2();else if(draft.role=="student"){s2()}else if(s=="3")s3();else if(s=="4")s4();else if(s=="5")s5()}
+else home()}
+window.addEventListener("hashchange",route);route();
+if(S)loadAll().then(function(){nav()});
+setInterval(function(){if(!S||!P)return;var h=location.hash.slice(1);loadAll().then(function(c){nav();if(h=="chat")return loadMsgs().then(function(){refreshChat(false)});if(!c)return;if(h=="dash")dash();else if(h=="meet")refreshMeets()})},8000);
 </script></body></html>
